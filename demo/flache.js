@@ -353,6 +353,7 @@ export default class Flache {
     localforage.setItem('FlacheQL', data, (err, result) => {
       if (err) {
         console.log("Error setting item in local forage for ", data);
+        console.log(err);
         return false;
       } else {
         console.log("No error setting item in localforage")
