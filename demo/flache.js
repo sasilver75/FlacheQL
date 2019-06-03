@@ -4,7 +4,9 @@ import constructResponsePath from "./helpers/constructResponsePath";
 import createCallbacksForPartialQueryValidation from "./helpers/createCallbacksForPartialQueryValidation";
 import denormalize from "./helpers/denormalize";
 import flatten from "./helpers/flatten";
-import localforage from "localforage"
+// import localForage from "localforage"
+import * as localForage from "localforage";
+
 
 export default class Flache {
   // TODO: have these parameters set-up on initialization rather than on each query
@@ -26,7 +28,7 @@ export default class Flache {
       // return the "data"-keyed object from indexDB using localForage
       console.log("Attempting to refresh CFQ from IDB...");
 
-      localforage.getItem('FlacheQL', (err, value) => {
+      localForage.getItem('FlacheQL', (err, value) => {
         // console.log("RESPONSE");
         if (err) {
           // console.log("IDB error getting data from IDB")
@@ -350,13 +352,13 @@ export default class Flache {
       fieldsCache: this.fieldsCache
     }
     console.log("Data about to be saved is: ", data);
-    localforage.setItem('FlacheQL', data, (err, result) => {
+    localForage.setItem('FlacheQL', data, (err, result) => {
       if (err) {
         console.log("Error setting item in local forage for ", data);
         console.log(err);
         return false;
       } else {
-        console.log("No error setting item in localforage")
+        console.log("No error setting item in localForage")
         return true;
       }
     })
